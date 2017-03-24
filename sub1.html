@@ -29,7 +29,7 @@ mui.plusReady(function(){
 	mui.get(
 		'http://hoa.hcoder.net/index.php?user=hcoder&pwd=hcoder&m=lunbo',//图片地址
 		function(res){
-			var items=res.split('--hcSplitor--');
+			var items=res.split('--hcSplitor--');//分割字符串
 			var html='<div class="mui-slider-item"><a href="#">'+items[items.length - 1]+'</a></div>';
 			var points = '';
 			for(var i = 0; i < items.length; i++){//循环拿到图片
@@ -45,12 +45,12 @@ mui.plusReady(function(){
 		}
 	);
 	mui.get(
-		'http://hoa.hcoder.net/index.php?user=hcoder&pwd=hcoder&m=mediaList&page=1',
+		'http://hoa.hcoder.net/index.php?user=hcoder&pwd=hcoder&m=mediaList&page=1',//数据储存接口		
 		function(res){
-			var newsLists = res.split('--hcSplitor--');
+			var newsLists = res.split('--hcSplitor--');//分割字符串
 			var html = '';
 			for(var i = 0; i < newsLists.length; i++){
-				var newsItem = newsLists[i].split('--hcListSplitor--');
+				var newsItem = newsLists[i].split('--hcListSplitor--');//分割字符串
 				html += '<li><a href="javascript:openInfo('+newsItem[0]+');"><div class="imgs"><img src="'+newsItem[1]+'" /></div><div class="title">'+newsItem[2]+'</div></a></li>';
 			}
 			h('#newsListUl').html(html);
