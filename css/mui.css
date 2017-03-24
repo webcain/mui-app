@@ -4556,13 +4556,13 @@ body > .mui-progressbar
     cursor: pointer;
 
     border-radius: 50%;
-    background: #aaa;
+    background: #FFFFFF;
     -webkit-box-shadow: 0 0 1px 1px rgba(130, 130, 130, .7);
             box-shadow: 0 0 1px 1px rgba(130, 130, 130, .7);
 }
 .mui-slider-indicator .mui-active.mui-indicator
 {
-    background: #fff;
+    background: #F03844;
 }
 .mui-slider-indicator .mui-icon
 {
@@ -5626,3 +5626,10 @@ body > .mui-progressbar
 	background: url(../imgs/searchBut.png) no-repeat 8px center #FFFFFF;
 	background-size:auto 68%;padding-left: 35px;color: #6D6D72;font-size: 14px;
 }
+.newsList{padding: 8px;}
+.newsList ul{list-style: none;padding:0;}
+.newsList li{width: 100%; overflow:hidden; }
+.newsList a{color:#000000;}
+.newsList .imgs{width: 20%; float: left; overflow: hidden;}
+.newsList .imgs img{width: 100%;}
+.newsList .title{width: 78%; font-size:14px; line-height:1.5em; float: right; overflow: hidden;}

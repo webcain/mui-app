@@ -10,11 +10,13 @@
 </head>
 <body>
 <div class="mui-content">
-    <div class="mui-slider">
-	  <div class="mui-slider-group mui-slider-loop" id="silder1">
-	  	
-	  </div>
-  	</div>
+	  <div class="mui-slider">
+		  <div class="mui-slider-group mui-slider-loop" id="silder1"></div>
+		  <div class="mui-slider-indicator" id="point"></div>
+	</div>
+  	<div class="newsList">
+		<ul id="newsListUl"></ul>
+	</div>
 </div>
 </div>
 <script src="js/mui.js"></script>
@@ -23,17 +25,39 @@
 mui.init();
 var _index,_self,_next;
 mui.plusReady(function(){
+	//图片轮播
 	mui.get(
-		'http://hoa.hcoder.net/index.php?user=hcoder&pwd=hcoder&m=lunbo',
+		'http://hoa.hcoder.net/index.php?user=hcoder&pwd=hcoder&m=lunbo',//图片地址
 		function(res){
 			var items=res.split('--hcSplitor--');
-			var html='';
-			for(var i=0;i<items.length;i++){
-				html+='<div class="mui-slider-item"><a href="#">'+items[i]+'</a></div>';
+			var html='<div class="mui-slider-item"><a href="#">'+items[items.length - 1]+'</a></div>';
+			var points = '';
+			for(var i = 0; i < items.length; i++){//循环拿到图片
+				html += '<div class="mui-slider-item"><a href="#">'+items[i]+'</a></div>';//拿到图片并且累加到变量中
+				points += '<div class="mui-indicator"></div>';
 			}
-			h('#silder1').html(html);
+			 html += '<div class="mui-slider-item"><a href="#">'+items[0]+'</a></div>';
+			h('#silder1').html(html);	//利用html方法把拿到图片的div添加到 id为#silder1的div容器中
+			h('#point').html(points);//同上 把进度圆点加入id为#point的div容器中
+			var gallery = mui('.mui-slider');
+			gallery.slider({interval:5000});
+			
 		}
 	);
+	mui.get(
+		'http://hoa.hcoder.net/index.php?user=hcoder&pwd=hcoder&m=mediaList&page=1',
+		function(res){
+			var newsLists = res.split('--hcSplitor--');
+			var html = '';
+			for(var i = 0; i < newsLists.length; i++){
+				var newsItem = newsLists[i].split('--hcListSplitor--');
+				html += '<li><a href="javascript:openInfo('+newsItem[0]+');"><div class="imgs"><img src="'+newsItem[1]+'" /></div><div class="title">'+newsItem[2]+'</div></a></li>';
+			}
+			h('#newsListUl').html(html);
+		}
+	);
+	
+	//页面侧滑
 	_self = plus.webview.currentWebview();
 	_next = plus.webview.getWebviewById('sub2.html');
 	_index = plus.webview.getLaunchWebview();
